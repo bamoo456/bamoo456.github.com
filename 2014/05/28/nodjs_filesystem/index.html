@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta name="viewport" content="width=932" >
+  <meta name="MobileOptimized" content="932" >
+  <meta name="generator" content="GeorgeChen techNote">
+  <title>Nodjs_filesystem_notes</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/awe.css">
+  <link rel="stylesheet" type="text/css" href="/css/social-likes.css">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/js/imgLiquid-min.js"></script>
+  <script src="/js/social-likes.min.js"></script>
+</head>
+
+<body>
+  <div class="main-container">
+    
+
+<div class="box profile">
+  <div class="heading" style="background: #3e5354 url(/images/bg-heading.jpg) no-repeat;">
+    <div class="profile-img">
+      <a href="//bamoo456.github.io/"><img src="//goo.gl/kF9cSN" width="154" height="150" alt="image description"></a>
+    </div>
+    <strong class="user"><a href="/">GeorgeChen techNote</a></strong>
+    <span class="locate">Taiwan</span>
+  </div>
+  <div class="setting">
+    <a href="//bamoo456.github.io/" class="btn-profile">Profile</a>
+    <a href="/" class="btn-photos">Photos</a>
+    <a href="/" class="btn-follow">Follow me</a>
+  </div>
+</div>
+
+    
+<div class="two-columns post-page">
+  <div class="content">
+
+    <div class="post box nocover">
+      <em class="date"><span>28</span>May</em>
+      <h2 class="post-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h2>
+      <div class="post-content"><h3 id="*_官方網站的api_reference">* <a href="http://nodejs.org/api/fs.html" target="_blank">官方網站的api reference</a></h3>
+<p>node 的強項在於透過<code>v8 engine</code>來實現non-blocking的程式執行方式!<br>而這樣的特性對於<code>檔案操作</code> 這種需要大量資源的i/o 來講是最適合的!</p>
+<p>雖然nodejs 的fs module實作了<code>sync</code> and <code>async</code> 兩種api型式，</p>
+<p>但為了符合node的優勢，應該盡量以<code>async</code>的方式</p>
+<p>可能會常用到的幾個fs api:</p>
+<p>#<br>#</p>
+<h2 id="確認檔案的是否存在"><em>確認檔案的是否存在</em></h2>
+<pre><code>fs<span class="preprocessor">.exists</span>(path, callback)
+
+fs<span class="preprocessor">.existsSync</span>(path)
+</code></pre><p>Test whether or not the given path exists by checking with the file system. Then call the callback argument with either true or false. </p>
+<p><strong>Example:</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="transposed_variable">fs.</span><span class="built_in">exists</span>(<span class="string">'/etc/passwd'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(exists)</span> {</span>
+  <span class="transposed_variable">util.</span>debug(<span class="built_in">exists</span> ? <span class="string">"it'</span>s there<span class="string">" : "</span>no passwd!<span class="string">");
+});</span>
+</pre></td></tr></table></figure>
+
+
+<p><code>fs.exists()</code> is an anachronism and exists only for historical reasons. There should almost never be a reason to use it in your own code.</p>
+<blockquote>
+<p>基本上官方文件是建議直接使用<code>fs.open()</code>這類型的api，如果遇到檔案不存在時，再去處理<code>exceptions</code></p>
+</blockquote>
+<p>In particular, checking if a file exists before opening it is an anti-pattern that leaves you vulnerable to race conditions: another process may remove the file between the calls to <code>fs.exists()</code> and <code>fs.open()</code>. Just open the file and handle the error when it’s not there.<br>#<br>#</p>
+<h2 id="重新命名檔案"><em>重新命名檔案</em></h2>
+<pre><code>fs<span class="preprocessor">.rename</span>(oldPath, newPath, callback)
+
+fs<span class="preprocessor">.renameSync</span>(oldPath, newPath)
+</code></pre><p><strong>Example:</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>fs.<span class="operator">rename(currFilename, prevFilename, <span class="keyword">null</span>);</span>
+</pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>這邊透過null callback 讓系統不用執行callback<br>#<br>#</p>
+</blockquote>
+<h2 id="刪除檔案"><em>刪除檔案</em></h2>
+<pre><code>fs<span class="preprocessor">.unlink</span>(path, callback)
+
+fs<span class="preprocessor">.unlinkSync</span>(path)
+</code></pre><p><strong>Example:</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>fs.unlink(filename, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+	<span class="comment">// do something </span>
+}
+</pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>檔案路徑可以是相對路徑或是絕對路徑<br>#<br>#</p>
+</blockquote>
+<h2 id="建立資料夾"><em>建立資料夾</em></h2>
+<pre><code><span class="tag">fs</span><span class="class">.mkdir</span>(<span class="tag">path</span>, <span class="attr_selector">[mode]</span>, <span class="tag">callback</span>)
+</code></pre><blockquote>
+<p>mode defaults to 0777</p>
+</blockquote>
+<pre><code><span class="tag">fs</span><span class="class">.mkdirSync</span>(<span class="tag">path</span>, <span class="attr_selector">[mode]</span>)
+</code></pre><p><strong>Example:</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>fs.mkdirSync(<span class="string">'./logs'</span>, <span class="string">'0755'</span>);
+</pre></td></tr></table></figure>
+
+
+<p>#<br>#</p>
+<h2 id="在檔案內新增內容"><em>在檔案內新增內容</em></h2>
+<pre><code><span class="title">fs</span>.appendFile(filename, <span class="typedef"><span class="keyword">data</span>, [options], callback)</span>
+
+<span class="title">fs</span>.appendFileSync(filename, <span class="typedef"><span class="keyword">data</span>, [options])</span>
+</code></pre><ul>
+<li>filename <code>String</code></li>
+<li>data <code>String | Buffer</code></li>
+<li>options <code>Object</code></li>
+<li>encoding <code>String | Null</code> default = ‘utf8’</li>
+<li>mode Number default = 438 (aka 0666 in Octal)</li>
+<li>flag <code>String</code> default = ‘a’</li>
+<li>callback <code>Function</code></li>
+</ul>
+<blockquote>
+<p>Asynchronously append data to a file, creating the file if it not yet exists. data can be a string or a buffer.<br><strong>如果檔案不存在的話，這個api會自動建立一個檔案</strong></p>
+</blockquote>
+<p><strong>Example:</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>fs.appendFile(<span class="string">'message.txt'</span>, <span class="string">'data to append'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(err)</span> {</span>
+  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;
+  console.log(<span class="string">'The "data to append" was appended to file!'</span>);
+});
+</pre></td></tr></table></figure>
+
+
+<p>#<br>#</p>
+<h2 id="讀取檔案內容"><em>讀取檔案內容</em></h2>
+<pre><code><span class="tag">fs</span><span class="class">.readFile</span>(<span class="tag">filename</span>, <span class="attr_selector">[options]</span>, <span class="tag">callback</span>)
+
+<span class="tag">fs</span><span class="class">.readFileSync</span>(<span class="tag">filename</span>, <span class="attr_selector">[options]</span>)
+</code></pre><ul>
+<li>filename <code>String</code></li>
+<li>options <code>Object</code></li>
+<li>encoding <code>String | Null</code> default = null</li>
+<li>flag <code>String</code> default = ‘r’</li>
+<li>callback <code>Function</code></li>
+</ul>
+<p><strong>Example</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>fs.readFile(filename, <span class="function"><span class="keyword">function</span> <span class="params">(err, Content)</span> {</span>
+  <span class="keyword">if</span> (err) {
+	output(<span class="string">'file is no exist!'</span>);
+	<span class="keyword">throw</span> err;
+  }
+}
+</pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>If no encoding is specified, then the raw buffer is returned.<br>  這邊的content 並不是string，所以還需要使用<code>toString()</code>來轉換內容的格式</p>
+</blockquote>
+<p>#<br>#</p>
+<h2 id="開啟檔案_(c_style)"><em>開啟檔案 (c style)</em></h2>
+<p>// fs.open is used for get the fd, and we can write buffer by this fd.<br>// fs.open(channelChatFile, ‘w+’, ‘666’, function(err, fd){});</p>
+</div>
+
+      <div class="bottom-panel">
+        <ul class="social-likes" data-url="/2014/05/28/nodjs_filesystem/">
+          <li class="facebook" title="like"></li>
+          <li class="twitter" title="twitte"></li>
+          <li class="plusone" title="google"></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="widget post-comment">
+      <h2 class="title">Comments</h2>
+      <section id="comments">
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </session>
+    </div>
+    
+  </div>
+
+  <div class="widgetarea">
+
+    
+    
+<div class="tags widget">
+  <h3 class="title">Tags</h3>
+  <div style="text-align:center">
+    
+    <a class="button" href="/tags/nodjs/">nodjs</a>
+    
+    <a class="button" href="/tags/javascript/">javascript</a>
+    
+    <a class="button" href="/tags/programming/">programming</a>
+    
+  </div>
+  
+</div>
+
+
+<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/hexo/" style="font-size: NaNpx;">hexo</a><a href="/tags/javascript/" style="font-size: NaNpx;">javascript</a><a href="/tags/nodjs/" style="font-size: NaNpx;">nodjs</a><a href="/tags/programming/" style="font-size: NaNpx;">programming</a><a href="/tags/startup/" style="font-size: NaNpx;">startup</a><a href="/tags/tech/" style="font-size: NaNpx;">tech</a></div>
+
+    
+
+    
+      
+
+<ul class="widget blogroll">
+  <h3 class="title">Recent Post</h3>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h3>
+        <p>* 官方網站的api reference
+node 的強項在於透過v8 engine來實現non-b</p>
+      </div>
+    </li>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2014/05/19/hexo-related-resource/">Hexo related resource</a></h3>
+        <p>hexo 相關的資源
+hexo 真是個很特別的framework東西，用起來不難!對於現在在玩nod</p>
+      </div>
+    </li>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2014/05/18/分工的哲學/">分工的哲學</a></h3>
+        <p>
+當你有群人一起工作時，如何讓團隊成員的綜效到達最大?
+
+這個問題真的相當困擾人呀, 我想Steve</p>
+      </div>
+    </li>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2014/05/18/hello-world/">Hello World</a></h3>
+        <p>Welcome to Hexo! This is your very first post. Che</p>
+      </div>
+    </li>
+  
+</ul>
+
+
+    
+
+  </div>
+</div>
+
+
+  </div>
+  
+<div class="footer">
+  <div class="container">
+    <a href="//github.com/kywk/hexo-theme-awe">AWE for hexo</a> inspired by <a href="http://goo.gl/H8OMRE">Awesome UI Kit</a>,
+    ported by <a href="//kywk.github.io/">MooCow (Aka. kywk)</a>.
+    
+    &copy; 2014 George Chen All Rights Reserved
+    
+  </div>
+</div>
+
+  <!-- disqus -->
+
+<script>
+  var disqus_shortname = 'georgechentechnote';
+  
+  var disqus_url = 'http://bamoo456.github.io/2014/05/28/nodjs_filesystem/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+  $('.imgLiquid').imgLiquid({fill:true, fadeInTime:500});
+});
+</script>
+
+
+<!-- fancybox -->
+<link rel="stylesheet" href="/package/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/package/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript">
+(function($){
+  $(".fancybox").fancybox();
+  $(".various").fancybox({
+    maxWidth  : 800,
+    maxHeight : 600,
+    fitToView : false,
+    width   : '70%',
+    height    : '70%',
+    autoSize  : true,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

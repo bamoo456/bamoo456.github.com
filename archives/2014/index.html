@@ -45,6 +45,39 @@
 
 
     <div class="post box nocover">
+      <em class="date"><span>28</span>May</em>
+      <h2 class="post-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h2>
+      <div class="post-content">* 官方網站的api reference
+node 的強項在於透過v8 engine來實現non-blocking的程式執行方式!而這樣的特性對於檔案操作 這種需要大量資源的i/o 來講是最適合的!
+雖然nodejs 的fs module實作了sync and async 兩種api型式，
+但為了符合node的優勢，應該盡量以async的方式
+可能會常用到的幾個fs api:
+##
+確認檔案的是否存在
+fs.exists(path, callback)
+
+fs.existsSync(path)
+Test whether or not the given path exists by checking with the file system. Then call the callback argument with either true or false. 
+Example:
+1
+2
+3
+      </div>
+
+      <div class="bottom-panel">
+        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/">
+          <li class="facebook" title="like"></li>
+          <li class="twitter" title="twitte"></li>
+          <li class="plusone" title="google"></li>
+        </ul>
+        <a href="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/#disqus_thread" class="btn-comment">Comments</a>
+      </div>
+    </div>
+
+
+
+
+    <div class="post box nocover">
       <em class="date"><span>19</span>May</em>
       <h2 class="post-title"><a href="/2014/05/19/hexo-related-resource/">Hexo related resource</a></h2>
       <div class="post-content">hexo 相關的資源
@@ -139,6 +172,12 @@ by specific feature or general feature ????
     
     <a class="button" href="/tags/startup/">startup</a>
     
+    <a class="button" href="/tags/programming/">programming</a>
+    
+    <a class="button" href="/tags/javascript/">javascript</a>
+    
+    <a class="button" href="/tags/nodjs/">nodjs</a>
+    
     <a class="button" href="/tags/tech/">tech</a>
     
     <a class="button" href="/tags/hexo/">hexo</a>
@@ -148,7 +187,7 @@ by specific feature or general feature ????
 </div>
 
 
-<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/hexo/" style="font-size: NaNpx;">hexo</a><a href="/tags/startup/" style="font-size: NaNpx;">startup</a><a href="/tags/tech/" style="font-size: NaNpx;">tech</a></div>
+<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/hexo/" style="font-size: NaNpx;">hexo</a><a href="/tags/javascript/" style="font-size: NaNpx;">javascript</a><a href="/tags/nodjs/" style="font-size: NaNpx;">nodjs</a><a href="/tags/programming/" style="font-size: NaNpx;">programming</a><a href="/tags/startup/" style="font-size: NaNpx;">startup</a><a href="/tags/tech/" style="font-size: NaNpx;">tech</a></div>
 
     
 
@@ -157,6 +196,15 @@ by specific feature or general feature ????
 
 <ul class="widget blogroll">
   <h3 class="title">Recent Post</h3>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h3>
+        <p>* 官方網站的api reference
+node 的強項在於透過v8 engine來實現non-b</p>
+      </div>
+    </li>
   
     
     <li>
