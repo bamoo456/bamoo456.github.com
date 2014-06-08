@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=932" >
   <meta name="MobileOptimized" content="932" >
   <meta name="generator" content="GeorgeChen techNote">
-  <title>Tag: nodjs</title>
+  <title>GUID in Javascript</title>
 
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/awe.css">
@@ -38,81 +38,66 @@
 </div>
 
     
-<div class="two-columns">
+<div class="two-columns post-page">
   <div class="content">
 
-
-
-
     <div class="post box nocover">
-      <em class="date"><span>01</span>Jun</em>
-      <h2 class="post-title"><a href="/2014/06/01/timefunc_in_js/">timeFunc_in_Js</a></h2>
-      <div class="post-content">javasript中，system time的相關作法主要是透過built-in的date ojbect
-主要的初始化func用法如下:
-var date = new Date();
-var date = new Date(msec);
-var date = new Date(dateString);
-var date = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-在new出date ojbect以後就可以透過其相對應的func來取得系統的許多跟時間相關的func
-取得目前數字表示的timestamp
-new Date().getTime();
-
-Returns the number of milliseconds since midnight Jan 1, 1970
-
-簡單講它會回傳一連串的數字來
-      </div>
-
-      <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/06/01/timefunc_in_js/">
-          <li class="facebook" title="like"></li>
-          <li class="twitter" title="twitte"></li>
-          <li class="plusone" title="google"></li>
-        </ul>
-        <a href="http://bamoo456.github.io/2014/06/01/timefunc_in_js/#disqus_thread" class="btn-comment">Comments</a>
-      </div>
-    </div>
-
-
-
-
-    <div class="post box nocover">
-      <em class="date"><span>28</span>May</em>
-      <h2 class="post-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h2>
-      <div class="post-content">* 官方網站的api reference
-node 的強項在於透過v8 engine來實現non-blocking的程式執行方式!而這樣的特性對於檔案操作 這種需要大量資源的i/o 來講是最適合的!
-雖然nodejs 的fs module實作了sync and async 兩種api型式，
-但為了符合node的優勢，應該盡量以async的方式
-可能會常用到的幾個fs api:
-##
-確認檔案的是否存在
-fs.exists(path, callback)
-
-fs.existsSync(path)
-Test whether or not the given path exists by checking with the file system. Then call the callback argument with either true or false. 
-Example:
-1
+      <em class="date"><span>07</span>Jun</em>
+      <h2 class="post-title"><a href="/2014/06/07/guid-in-javascript/">GUID in Javascript</a></h2>
+      <div class="post-content"><h2 id="Why_we_need_GUID_?">Why we need GUID ?</h2>
+<p>當要控管每個<em>user</em>與其相對應的<em>session</em>時，一個特別的<code>global_unique_ID</code>就會需要用到!</p>
+<p><strong>簡單記錄幾種情況會使用到guid與其相對應的產生方式：</strong></p>
+<h2 id="簡單亂數">簡單亂數</h2>
+<blockquote>
+<p>通常這種情況比較適合短暫且要控管的<code>client/user/request</code>很少，所以這邊就直接簡單產生一個<br>簡單的亂數來代表這些臨時產生的<em>request</em></p>
+</blockquote>
+<pre><code>var x = Math.<span class="built_in">floor</span>(Math.<span class="built_in">random</span>() * (<span class="built_in">max</span> - <span class="built_in">min</span> + <span class="number">1</span>)) + <span class="built_in">min</span>;
+</code></pre><h3 id="Reference"><a href="http://flippinawesome.org/2013/12/23/45-useful-javascript-tips-tricks-and-best-practices/" target="_blank">Reference</a></h3>
+<h2 id="非永久性的request">非永久性的<em>request</em></h2>
+<blockquote>
+<p>在這邊是使用網路上的參考方式去產生出一個<em>36 bits</em>的一串數值，透過這個數值去辨認每一個連接進來的<em>session</em><br>或<em>session</em>所產生出來的<em>request</em> !<br>由於這種情況下，所產生出來的需求會較多，且持續時間<strong>ex: session 連接時間</strong>也會較長，所以這種guid所產生的方式會較上個方式複雜。</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-      </div>
+4
+5
+6
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">S4</span><span class="params">()</span> {</span>
+   <span class="keyword">return</span> (((<span class="number">1</span>+<span class="built_in">Math</span>.random())*<span class="number">0x10000</span>)|<span class="number">0</span>).toString(<span class="number">16</span>).substring(<span class="number">1</span>);
+}
+<span class="function"><span class="keyword">function</span> <span class="title">guid</span><span class="params">()</span> {</span>
+   <span class="keyword">return</span> (S4()+S4()+<span class="string">"-"</span>+S4()+<span class="string">"-"</span>+S4()+<span class="string">"-"</span>+S4()+<span class="string">"-"</span>+S4()+S4()+S4());
+}
+</pre></td></tr></table></figure>
+
+
+<h3 id="Reference-1"><a href="http://note19.com/2007/05/27/javascript-guid-generator/" target="_blank">Reference</a></h3>
+<h2 id="用來永久儲存物件時所對應的guid">用來永久儲存物件時所對應的guid</h2>
+<blockquote>
+<p>最後一種情境通常會出現在使用<em>database</em>的情況下，由於某組<em>guid</em>產生出來以後，就幾乎是永久性的了!<br>也不太會再<em>release</em>出來，所以等於說我們的<code>guid pool</code>要夠大或是使用時要有一定規則，不然很可能一下就用光了。</p>
+</blockquote>
+<h4 id="會這樣區分的原因在於，不同的情況下，使用合適的方式是會較有效率的!_而在這邊簡單做個記錄">會這樣區分的原因在於，不同的情況下，使用合適的方式是會較有效率的! 而在這邊簡單做個記錄</h4>
+</div>
 
       <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/">
+        <ul class="social-likes" data-url="/2014/06/07/guid-in-javascript/">
           <li class="facebook" title="like"></li>
           <li class="twitter" title="twitte"></li>
           <li class="plusone" title="google"></li>
         </ul>
-        <a href="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/#disqus_thread" class="btn-comment">Comments</a>
       </div>
     </div>
-
     
-
-<ul class="paging box">
-  
-  <span class="page-number">Page 1 of 1</span>
-  
-</ul>
-
+    <div class="widget post-comment">
+      <h2 class="title">Comments</h2>
+      <section id="comments">
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </session>
+    </div>
+    
   </div>
 
   <div class="widgetarea">
@@ -123,21 +108,11 @@ Example:
   <h3 class="title">Tags</h3>
   <div style="text-align:center">
     
-    <a class="button" href="/tags/programming/">programming</a>
+    <a class="button" href="/tags/session/">session</a>
     
     <a class="button" href="/tags/javascript/">javascript</a>
     
-    <a class="button" href="/tags/nodjs/">nodjs</a>
-    
-    <a class="button" href="/tags/startup/">startup</a>
-    
-    <a class="button" href="/tags/time/">time</a>
-    
-    <a class="button" href="/tags/tech/">tech</a>
-    
-    <a class="button" href="/tags/hexo/">hexo</a>
-    
-    <a class="button" href="/tags/session/">session</a>
+    <a class="button" href="/tags/programming/">programming</a>
     
   </div>
   
@@ -224,11 +199,13 @@ hexo 真是個很特別的framework東西，用起來不難!對於現在在玩no
 <script>
   var disqus_shortname = 'georgechentechnote';
   
+  var disqus_url = 'http://bamoo456.github.io/2014/06/07/guid-in-javascript/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
+    dsq.src = '//go.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
