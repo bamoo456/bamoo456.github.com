@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=932" >
   <meta name="MobileOptimized" content="932" >
   <meta name="generator" content="GeorgeChen techNote">
-  <title>Hello World</title>
+  <title>the introduction of google cloud platform developer</title>
 
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/awe.css">
@@ -42,13 +42,46 @@
   <div class="content">
 
     <div class="post box nocover">
-      <em class="date"><span>18</span>May</em>
-      <h2 class="post-title"><a href="/2014/05/18/hello-world/">Hello World</a></h2>
-      <div class="post-content"><p>Welcome to <a href="http://hexo.io" target="_blank">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs" target="_blank">documentation</a> to learn how to use.</p>
+      <em class="date"><span>16</span>Jun</em>
+      <h2 class="post-title"><a href="/2014/06/16/the-introduction-of-google-cloud-platform-developer/">the introduction of google cloud platform developer</a></h2>
+      <div class="post-content"><p>簡單記錄一下在<code>google cloud platfrom</code>介紹當天的一些筆記</p>
+<p>去聽了開發人員的介紹以後，大概可以知道的就是他們現在很積極的推薦這個平台，</p>
+<p>相對於<code>amazon</code>亦做了一些差異化的服務!</p>
+<ul>
+<li><p>App Engine (PaaS)</p>
+</li>
+<li><p>Compute Engine (IaaS)</p>
+</li>
+</ul>
+<p>這兩個原有的服務在網路上就有很多相關的介紹了，所以這邊就只有記錄下面這項新的服務。</p>
+<ul>
+<li>Managed VMs</li>
+</ul>
+<p>在目前既有的<code>app engine</code>與<code>compute engine</code>架構下，為了增加<code>google cloud platform</code>的彈性!</p>
+<p>通常，會使用<code>app engine</code>是為了讓<em>developer</em>能夠更專注在目前服務的開發，而管理與擴充的部分則交由<code>Google</code>去煩惱…</p>
+<p>但遇到以下的情況時，就又會讓<em>developer</em>感到麻煩…</p>
+<h3 id="Example"><em>Example</em></h3>
+<p>簡單來講，如果目前正在<em>run</em>的服務是在<code>app engine</code>上，但又需要額外的<em>c/c++ lib</em>時(<code>app engine</code>不支援c/c++)</p>
+<p>它可以透過<code>Managed VMs</code>來新增一台虛擬主機，然後讓<em>c/c++ lib</em>在這些<code>Managed VMs</code>上面執行!</p>
+<p>而<code>google cloud</code>則會負責連接目前的<code>app engine</code>與<code>Managed VMs</code>上的<em>Lib</em>，並且作好擴充的準備!</p>
+<p><img src="http://tctechcrunch2011.files.wordpress.com/2014/03/2014-03-25_1029.png?w=1024&amp;h=432" alt=""></p>
+<p>不過實際上還是要試了才知道真正的使用效益大不大!</p>
+<p><strong>其它相關資訊：</strong></p>
+<ul>
+<li><p>google <code>compute engine</code>目前的’asia’指的就是台灣 !</p>
+</li>
+<li><p>google app engine服務中包含了 CDN, DNS… 相關</p>
+</li>
+<li><p>google endpoint 能夠很快速的產生client 與 google cloud API 連接的sample code</p>
+</li>
+</ul>
+<p><strong><a href="http://techcrunch.com/2014/03/25/google-launches-managed-virtual-machines-gives-developers-a-middle-ground-between-compute-and-app-engine/" target="_blank">參考資訊-1</a></strong></p>
+<p><strong><a href="https://developers.google.com/cloud/managed-vms" target="_blank">參考資訊-2</a></strong></p>
+<h2 id="_"> </h2>
 </div>
 
       <div class="bottom-panel">
-        <ul class="social-likes" data-url="/2014/05/18/hello-world/">
+        <ul class="social-likes" data-url="/2014/06/16/the-introduction-of-google-cloud-platform-developer/">
           <li class="facebook" title="like"></li>
           <li class="twitter" title="twitte"></li>
           <li class="plusone" title="google"></li>
@@ -71,6 +104,18 @@
 
     
     
+<div class="tags widget">
+  <h3 class="title">Tags</h3>
+  <div style="text-align:center">
+    
+    <a class="button" href="/tags/google cloud/">google cloud</a>
+    
+    <a class="button" href="/tags/deployment/">deployment</a>
+    
+  </div>
+  
+</div>
+
 
 <div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/deployment/" style="font-size: 12.00px;">deployment</a><a href="/tags/google cloud/" style="font-size: 12.00px;">google cloud</a><a href="/tags/hexo/" style="font-size: 12.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 24.00px;">javascript</a><a href="/tags/nodjs/" style="font-size: 18.00px;">nodjs</a><a href="/tags/programming/" style="font-size: 24.00px;">programming</a><a href="/tags/session/" style="font-size: 12.00px;">session</a><a href="/tags/startup/" style="font-size: 12.00px;">startup</a><a href="/tags/tech/" style="font-size: 12.00px;">tech</a><a href="/tags/time/" style="font-size: 12.00px;">time</a></div>
 
@@ -152,7 +197,7 @@ hexo 真是個很特別的framework東西，用起來不難!對於現在在玩no
 <script>
   var disqus_shortname = 'georgechentechnote';
   
-  var disqus_url = 'http://bamoo456.github.io/2014/05/18/hello-world/';
+  var disqus_url = 'http://bamoo456.github.io/2014/06/16/the-introduction-of-google-cloud-platform-developer/';
   
   (function(){
     var dsq = document.createElement('script');
