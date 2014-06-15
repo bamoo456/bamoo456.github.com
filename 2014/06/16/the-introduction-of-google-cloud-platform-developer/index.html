@@ -61,9 +61,11 @@
 <p>通常，會使用<code>app engine</code>是為了讓<em>developer</em>能夠更專注在目前服務的開發，而管理與擴充的部分則交由<code>Google</code>去煩惱…</p>
 <p>但遇到以下的情況時，就又會讓<em>developer</em>感到麻煩…</p>
 <h3 id="Example"><em>Example</em></h3>
+<blockquote>
 <p>簡單來講，如果目前正在<em>run</em>的服務是在<code>app engine</code>上，但又需要額外的<em>c/c++ lib</em>時(<code>app engine</code>不支援c/c++)</p>
 <p>它可以透過<code>Managed VMs</code>來新增一台虛擬主機，然後讓<em>c/c++ lib</em>在這些<code>Managed VMs</code>上面執行!</p>
 <p>而<code>google cloud</code>則會負責連接目前的<code>app engine</code>與<code>Managed VMs</code>上的<em>Lib</em>，並且作好擴充的準備!</p>
+</blockquote>
 <p><img src="http://tctechcrunch2011.files.wordpress.com/2014/03/2014-03-25_1029.png?w=1024&amp;h=432" alt=""></p>
 <p>不過實際上還是要試了才知道真正的使用效益大不大!</p>
 <p><strong>其它相關資訊：</strong></p>
