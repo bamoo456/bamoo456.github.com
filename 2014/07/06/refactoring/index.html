@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=932" >
   <meta name="MobileOptimized" content="932" >
   <meta name="generator" content="GeorgeChen techNote">
-  <title>Tag: deployment</title>
+  <title>Refactoring....</title>
 
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/awe.css">
@@ -38,51 +38,68 @@
 </div>
 
     
-<div class="two-columns">
+<div class="two-columns post-page">
   <div class="content">
 
-
-
-
-    <div class="post box">
-      <div class="coverimg imgLiquid">
-        <img src="http://tctechcrunch2011.files.wordpress.com/2014/03/2014-03-25_1029.png?w=1024&amp;h=432">
-        <em class="date"><span>16</span>Jun</em>
-        <h2 class="post-title"><a href="/2014/06/16/the-introduction-of-google-cloud-platform-developer/">the introduction of google cloud platform developer</a></h2>
-      </div>
-      <div class="post-content">簡單記錄一下在google cloud platfrom介紹當天的一些筆記
-去聽了開發人員的介紹以後，大概可以知道的就是他們現在很積極的推薦這個平台，
-相對於amazon亦做了一些差異化的服務!
-
-App Engine (PaaS)
-
-Compute Engine (IaaS)
-
-
-這兩個原有的服務在網路上就有很多相關的介紹了，所以這邊就只有記錄下面這項新的服務。
-
-Managed VMs
-
-在目</div>
+    <div class="post box nocover">
+      <em class="date"><span>06</span>Jul</em>
+      <h2 class="post-title"><a href="/2014/07/06/refactoring/">Refactoring....</a></h2>
+      <div class="post-content"><p>當初在設計這項服務<code>ProjectA</code>時…   (還沒想好這個service 的名字)</p>
+<p>只是把我們找到<code>lib</code>，寫的功能用很簡單的方式把它們整合起來</p>
+<p>接下來就是一連串的瘋狂<code>commit</code></p>
+<p>想到什麼該寫的，就把這個功能加進去</p>
+<p>隨著時間的拉長…</p>
+<p>許多新的<code>feature</code>或<code>bug fix commit</code> 讓<code>ProjectA</code>漸漸變得擁腫!</p>
+<p>這樣的問題其實很常在書上看到或有經驗的人口中可以聽到，但真實發生時，真的很麻煩</p>
+<p>這邊看來<code>ProjectA</code>的架構以不敷使用，亦或許說<code>ProjectA</code>的前端重來都有沒有一個架構 :(</p>
+<h4 id="這問題真的會搞死人了，當下只有幾個想法：">這問題真的會搞死人了，當下只有幾個想法：</h4>
+<blockquote>
+<p>*如果要照進度跑的話，現在重構會影響進度嗎?</p>
+<p>*我沒有重構過，該如何做阿</p>
+<p>*我設計出來的架構可以用嗎?  會不會又有其它問題阿??</p>
+</blockquote>
+<p>可能是因為需要重構的是前端，所以再重新設計新架構時，比較不需要考量到一些複雜的面向</p>
+<blockquote>
+<p>ex: how to scable ? </p>
+</blockquote>
+<p>而這段時間又是不停的跟團隊激盪，看了些關於軟體架構的書；</p>
+<p>就真的硬下去做了…  </p>
+<h4 id="記錄一下重構流程：">記錄一下重構流程：</h4>
+<ul>
+<li><p>重新思考未來可能會遇到的需求，盡量讓需求明確，且可量化。</p>
+</li>
+<li><p>透過”需求”來思考新的軟體架構應該的”長相”，需要包含哪些軟體元件 </p>
+</li>
+<li><p>設計每個元件的 API，以及明確定義這些API 需要提供的功能</p>
+</li>
+<li><p>開始實作 軟體元件與其中的API，透過實作過程，再重覆的修改這些API讓它們更符合需求</p>
+</li>
+<li><p>重新檢視新架構</p>
+</li>
+<li><p>漸近式的導入新架構，與抽離舊的程式碼</p>
+</li>
+</ul>
+<p>也許這不是正確的流程；但第一次設計架構阿，值得記錄  XD</p>
+</div>
 
       <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/06/16/the-introduction-of-google-cloud-platform-developer/">
+        <ul class="social-likes" data-url="/2014/07/06/refactoring/">
           <li class="facebook" title="like"></li>
           <li class="twitter" title="twitte"></li>
           <li class="plusone" title="google"></li>
         </ul>
-        <a href="http://bamoo456.github.io/2014/06/16/the-introduction-of-google-cloud-platform-developer/#disqus_thread" class="btn-comment">Comments</a>
       </div>
     </div>
-
     
-
-<ul class="paging box">
-  
-  <span class="page-number">Page 1 of 1</span>
-  
-</ul>
-
+    <div class="widget post-comment">
+      <h2 class="title">Comments</h2>
+      <section id="comments">
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </session>
+    </div>
+    
   </div>
 
   <div class="widgetarea">
@@ -93,27 +110,11 @@ Managed VMs
   <h3 class="title">Tags</h3>
   <div style="text-align:center">
     
-    <a class="button" href="/tags/programming/">programming</a>
-    
-    <a class="button" href="/tags/javascript/">javascript</a>
+    <a class="button" href="/tags/refactoring/">refactoring</a>
     
     <a class="button" href="/tags/startup/">startup</a>
     
-    <a class="button" href="/tags/nodjs/">nodjs</a>
-    
-    <a class="button" href="/tags/google cloud/">google cloud</a>
-    
-    <a class="button" href="/tags/refactoring/">refactoring</a>
-    
-    <a class="button" href="/tags/deployment/">deployment</a>
-    
-    <a class="button" href="/tags/tech/">tech</a>
-    
-    <a class="button" href="/tags/hexo/">hexo</a>
-    
-    <a class="button" href="/tags/session/">session</a>
-    
-    <a class="button" href="/tags/time/">time</a>
+    <a class="button" href="/tags/programming/">programming</a>
     
   </div>
   
@@ -200,11 +201,13 @@ node 的強項在於透過v8 engine來實現non-b</p>
 <script>
   var disqus_shortname = 'georgechentechnote';
   
+  var disqus_url = 'http://bamoo456.github.io/2014/07/06/refactoring/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
+    dsq.src = '//go.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

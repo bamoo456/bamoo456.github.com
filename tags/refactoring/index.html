@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=932" >
   <meta name="MobileOptimized" content="932" >
   <meta name="generator" content="GeorgeChen techNote">
-  <title>Tag: deployment</title>
+  <title>Tag: refactoring</title>
 
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/awe.css">
@@ -44,34 +44,35 @@
 
 
 
-    <div class="post box">
-      <div class="coverimg imgLiquid">
-        <img src="http://tctechcrunch2011.files.wordpress.com/2014/03/2014-03-25_1029.png?w=1024&amp;h=432">
-        <em class="date"><span>16</span>Jun</em>
-        <h2 class="post-title"><a href="/2014/06/16/the-introduction-of-google-cloud-platform-developer/">the introduction of google cloud platform developer</a></h2>
+    <div class="post box nocover">
+      <em class="date"><span>06</span>Jul</em>
+      <h2 class="post-title"><a href="/2014/07/06/refactoring/">Refactoring....</a></h2>
+      <div class="post-content">當初在設計這項服務ProjectA時…   (還沒想好這個service 的名字)
+只是把我們找到lib，寫的功能用很簡單的方式把它們整合起來
+接下來就是一連串的瘋狂commit
+想到什麼該寫的，就把這個功能加進去
+隨著時間的拉長…
+許多新的feature或bug fix commit 讓ProjectA漸漸變得擁腫!
+這樣的問題其實很常在書上看到或有經驗的人口中可以聽到，但真實發生時，真的很麻煩
+這邊看來ProjectA的架構以不敷使用，亦或許說ProjectA的前端重來都有沒有一個架構 :(
+這問題真的會搞死人了，當下只有幾個想法：
+
+*如果要照進度跑的話，現在重構會影響進度嗎?
+*我沒有重構過，該如何做阿
+*我設計出來的架構可以用嗎?  會不會又有其它問題阿??
+
+可能是因為需要重構的是前端，所以再重新設計新架構時，比較不需要考量到一些複雜的面向
+
+ex: how to scable
       </div>
-      <div class="post-content">簡單記錄一下在google cloud platfrom介紹當天的一些筆記
-去聽了開發人員的介紹以後，大概可以知道的就是他們現在很積極的推薦這個平台，
-相對於amazon亦做了一些差異化的服務!
-
-App Engine (PaaS)
-
-Compute Engine (IaaS)
-
-
-這兩個原有的服務在網路上就有很多相關的介紹了，所以這邊就只有記錄下面這項新的服務。
-
-Managed VMs
-
-在目</div>
 
       <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/06/16/the-introduction-of-google-cloud-platform-developer/">
+        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/07/06/refactoring/">
           <li class="facebook" title="like"></li>
           <li class="twitter" title="twitte"></li>
           <li class="plusone" title="google"></li>
         </ul>
-        <a href="http://bamoo456.github.io/2014/06/16/the-introduction-of-google-cloud-platform-developer/#disqus_thread" class="btn-comment">Comments</a>
+        <a href="http://bamoo456.github.io/2014/07/06/refactoring/#disqus_thread" class="btn-comment">Comments</a>
       </div>
     </div>
 

@@ -45,6 +45,41 @@
 
 
     <div class="post box nocover">
+      <em class="date"><span>06</span>Jul</em>
+      <h2 class="post-title"><a href="/2014/07/06/refactoring/">Refactoring....</a></h2>
+      <div class="post-content">當初在設計這項服務ProjectA時…   (還沒想好這個service 的名字)
+只是把我們找到lib，寫的功能用很簡單的方式把它們整合起來
+接下來就是一連串的瘋狂commit
+想到什麼該寫的，就把這個功能加進去
+隨著時間的拉長…
+許多新的feature或bug fix commit 讓ProjectA漸漸變得擁腫!
+這樣的問題其實很常在書上看到或有經驗的人口中可以聽到，但真實發生時，真的很麻煩
+這邊看來ProjectA的架構以不敷使用，亦或許說ProjectA的前端重來都有沒有一個架構 :(
+這問題真的會搞死人了，當下只有幾個想法：
+
+*如果要照進度跑的話，現在重構會影響進度嗎?
+*我沒有重構過，該如何做阿
+*我設計出來的架構可以用嗎?  會不會又有其它問題阿??
+
+可能是因為需要重構的是前端，所以再重新設計新架構時，比較不需要考量到一些複雜的面向
+
+ex: how to scable
+      </div>
+
+      <div class="bottom-panel">
+        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/07/06/refactoring/">
+          <li class="facebook" title="like"></li>
+          <li class="twitter" title="twitte"></li>
+          <li class="plusone" title="google"></li>
+        </ul>
+        <a href="http://bamoo456.github.io/2014/07/06/refactoring/#disqus_thread" class="btn-comment">Comments</a>
+      </div>
+    </div>
+
+
+
+
+    <div class="post box nocover">
       <em class="date"><span>07</span>Jun</em>
       <h2 class="post-title"><a href="/2014/06/07/guid-in-javascript/">GUID in Javascript</a></h2>
       <div class="post-content">Why we need GUID ?
@@ -157,15 +192,15 @@ Example:
     
     <a class="button" href="/tags/javascript/">javascript</a>
     
-    <a class="button" href="/tags/nodjs/">nodjs</a>
-    
     <a class="button" href="/tags/startup/">startup</a>
     
-    <a class="button" href="/tags/time/">time</a>
-    
-    <a class="button" href="/tags/deployment/">deployment</a>
+    <a class="button" href="/tags/nodjs/">nodjs</a>
     
     <a class="button" href="/tags/google cloud/">google cloud</a>
+    
+    <a class="button" href="/tags/refactoring/">refactoring</a>
+    
+    <a class="button" href="/tags/deployment/">deployment</a>
     
     <a class="button" href="/tags/tech/">tech</a>
     
@@ -173,12 +208,14 @@ Example:
     
     <a class="button" href="/tags/session/">session</a>
     
+    <a class="button" href="/tags/time/">time</a>
+    
   </div>
   
 </div>
 
 
-<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/deployment/" style="font-size: 12.00px;">deployment</a><a href="/tags/google cloud/" style="font-size: 12.00px;">google cloud</a><a href="/tags/hexo/" style="font-size: 12.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 24.00px;">javascript</a><a href="/tags/nodjs/" style="font-size: 18.00px;">nodjs</a><a href="/tags/programming/" style="font-size: 24.00px;">programming</a><a href="/tags/session/" style="font-size: 12.00px;">session</a><a href="/tags/startup/" style="font-size: 12.00px;">startup</a><a href="/tags/tech/" style="font-size: 12.00px;">tech</a><a href="/tags/time/" style="font-size: 12.00px;">time</a></div>
+<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/deployment/" style="font-size: 12.00px;">deployment</a><a href="/tags/google cloud/" style="font-size: 12.00px;">google cloud</a><a href="/tags/hexo/" style="font-size: 12.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/nodjs/" style="font-size: 16.00px;">nodjs</a><a href="/tags/programming/" style="font-size: 24.00px;">programming</a><a href="/tags/refactoring/" style="font-size: 12.00px;">refactoring</a><a href="/tags/session/" style="font-size: 12.00px;">session</a><a href="/tags/startup/" style="font-size: 16.00px;">startup</a><a href="/tags/tech/" style="font-size: 12.00px;">tech</a><a href="/tags/time/" style="font-size: 12.00px;">time</a></div>
 
     
 
@@ -187,6 +224,15 @@ Example:
 
 <ul class="widget blogroll">
   <h3 class="title">Recent Post</h3>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2014/07/06/refactoring/">Refactoring....</a></h3>
+        <p>當初在設計這項服務ProjectA時…   (還沒想好這個service 的名字)
+只是把我們找到l</p>
+      </div>
+    </li>
   
     
     <li>
@@ -220,15 +266,6 @@ Example:
         <h3 class="link-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h3>
         <p>* 官方網站的api reference
 node 的強項在於透過v8 engine來實現non-b</p>
-      </div>
-    </li>
-  
-    
-    <li>
-      <div class="text-holder">
-        <h3 class="link-title"><a href="/2014/05/19/hexo-related-resource/">Hexo related resource</a></h3>
-        <p>hexo 相關的資源
-hexo 真是個很特別的framework東西，用起來不難!對於現在在玩nod</p>
       </div>
     </li>
   
