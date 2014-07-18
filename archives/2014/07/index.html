@@ -45,6 +45,39 @@
 
 
     <div class="post box nocover">
+      <em class="date"><span>18</span>Jul</em>
+      <h2 class="post-title"><a href="/2014/07/18/notes-for-nohup-command-on-linux/">notes for nohup command on Linux</a></h2>
+      <div class="post-content">nohup
+記錄一下這個linux的舊指令用法…
+當我們正常執行指令是透過telnet或ssh時，通常會遇到遠端離線時，同時正在執行的程式也跟著停掉了；
+在某些情況下，這倒是蠻困擾人的，也許我們就只是想要遠端進去server讓程式執行整晚!但卻因為程式無法繼續，而產生問題…
+why command/program will be stopped when logout ?
+主要在於：當我們從一個連線登出的時候，每個process都會收到一個SIGHUP信號，透過nohup所下達的命令就可以不受影響，繼續執行。
+=&gt;詳細解釋出處
+How to use nohup
+最簡單的方式是在原本要執行的執令前面加入nohupex:
+nohup your_command &amp;
+
+
+nohup your_command &amp;&gt;myout.txt &amp;
+
+這邊將原始指令的輸出重新
+      </div>
+
+      <div class="bottom-panel">
+        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/07/18/notes-for-nohup-command-on-linux/">
+          <li class="facebook" title="like"></li>
+          <li class="twitter" title="twitte"></li>
+          <li class="plusone" title="google"></li>
+        </ul>
+        <a href="http://bamoo456.github.io/2014/07/18/notes-for-nohup-command-on-linux/#disqus_thread" class="btn-comment">Comments</a>
+      </div>
+    </div>
+
+
+
+
+    <div class="post box nocover">
       <em class="date"><span>06</span>Jul</em>
       <h2 class="post-title"><a href="/2014/07/06/refactoring/">Refactoring....</a></h2>
       <div class="post-content">當初在設計這項服務ProjectA時…   (還沒想好這個service 的名字)
@@ -98,15 +131,21 @@ ex: how to scable
     
     <a class="button" href="/tags/javascript/">javascript</a>
     
+    <a class="button" href="/tags/deployment/">deployment</a>
+    
     <a class="button" href="/tags/startup/">startup</a>
     
     <a class="button" href="/tags/nodjs/">nodjs</a>
     
-    <a class="button" href="/tags/google cloud/">google cloud</a>
-    
     <a class="button" href="/tags/refactoring/">refactoring</a>
     
-    <a class="button" href="/tags/deployment/">deployment</a>
+    <a class="button" href="/tags/mac/">mac</a>
+    
+    <a class="button" href="/tags/shell/">shell</a>
+    
+    <a class="button" href="/tags/google cloud/">google cloud</a>
+    
+    <a class="button" href="/tags/linux/">linux</a>
     
     <a class="button" href="/tags/tech/">tech</a>
     
@@ -121,7 +160,7 @@ ex: how to scable
 </div>
 
 
-<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/deployment/" style="font-size: 12.00px;">deployment</a><a href="/tags/google cloud/" style="font-size: 12.00px;">google cloud</a><a href="/tags/hexo/" style="font-size: 12.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/nodjs/" style="font-size: 16.00px;">nodjs</a><a href="/tags/programming/" style="font-size: 24.00px;">programming</a><a href="/tags/refactoring/" style="font-size: 12.00px;">refactoring</a><a href="/tags/session/" style="font-size: 12.00px;">session</a><a href="/tags/startup/" style="font-size: 16.00px;">startup</a><a href="/tags/tech/" style="font-size: 12.00px;">tech</a><a href="/tags/time/" style="font-size: 12.00px;">time</a></div>
+<div class="tagcloud" id="fbox-tagcloud" style="margin:10px; display:none; overflow: hidden"><a href="/tags/deployment/" style="font-size: 16.00px;">deployment</a><a href="/tags/google cloud/" style="font-size: 12.00px;">google cloud</a><a href="/tags/hexo/" style="font-size: 12.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 20.00px;">javascript</a><a href="/tags/linux/" style="font-size: 12.00px;">linux</a><a href="/tags/mac/" style="font-size: 12.00px;">mac</a><a href="/tags/nodjs/" style="font-size: 16.00px;">nodjs</a><a href="/tags/programming/" style="font-size: 24.00px;">programming</a><a href="/tags/refactoring/" style="font-size: 12.00px;">refactoring</a><a href="/tags/session/" style="font-size: 12.00px;">session</a><a href="/tags/shell/" style="font-size: 12.00px;">shell</a><a href="/tags/startup/" style="font-size: 16.00px;">startup</a><a href="/tags/tech/" style="font-size: 12.00px;">tech</a><a href="/tags/time/" style="font-size: 12.00px;">time</a></div>
 
     
 
@@ -130,6 +169,16 @@ ex: how to scable
 
 <ul class="widget blogroll">
   <h3 class="title">Recent Post</h3>
+  
+    
+    <li>
+      <div class="text-holder">
+        <h3 class="link-title"><a href="/2014/07/18/notes-for-nohup-command-on-linux/">notes for nohup command on Linux</a></h3>
+        <p>nohup
+記錄一下這個linux的舊指令用法…
+當我們正常執行指令是透過telnet或ssh時，通</p>
+      </div>
+    </li>
   
     
     <li>
@@ -163,15 +212,6 @@ ex: how to scable
       <div class="text-holder">
         <h3 class="link-title"><a href="/2014/06/01/timefunc_in_js/">timeFunc_in_Js</a></h3>
         <p>javasript中，system time的相關作法主要是透過built-in的date ojbe</p>
-      </div>
-    </li>
-  
-    
-    <li>
-      <div class="text-holder">
-        <h3 class="link-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h3>
-        <p>* 官方網站的api reference
-node 的強項在於透過v8 engine來實現non-b</p>
       </div>
     </li>
   

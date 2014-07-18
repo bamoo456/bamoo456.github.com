@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=932" >
   <meta name="MobileOptimized" content="932" >
   <meta name="generator" content="GeorgeChen techNote">
-  <title>Tag: javascript</title>
+  <title>Tag: shell</title>
 
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/awe.css">
@@ -45,93 +45,32 @@
 
 
     <div class="post box nocover">
-      <em class="date"><span>07</span>Jun</em>
-      <h2 class="post-title"><a href="/2014/06/07/guid-in-javascript/">GUID in Javascript</a></h2>
-      <div class="post-content">Why we need GUID ?
-當要控管每個user與其相對應的session時，一個特別的global_unique_ID就會需要用到!
-簡單記錄幾種情況會使用到guid與其相對應的產生方式：
-簡單亂數
+      <em class="date"><span>18</span>Jul</em>
+      <h2 class="post-title"><a href="/2014/07/18/notes-for-nohup-command-on-linux/">notes for nohup command on Linux</a></h2>
+      <div class="post-content">nohup
+記錄一下這個linux的舊指令用法…
+當我們正常執行指令是透過telnet或ssh時，通常會遇到遠端離線時，同時正在執行的程式也跟著停掉了；
+在某些情況下，這倒是蠻困擾人的，也許我們就只是想要遠端進去server讓程式執行整晚!但卻因為程式無法繼續，而產生問題…
+why command/program will be stopped when logout ?
+主要在於：當我們從一個連線登出的時候，每個process都會收到一個SIGHUP信號，透過nohup所下達的命令就可以不受影響，繼續執行。
+=&gt;詳細解釋出處
+How to use nohup
+最簡單的方式是在原本要執行的執令前面加入nohupex:
+nohup your_command &amp;
 
-通常這種情況比較適合短暫且要控管的client/user/request很少，所以這邊就直接簡單產生一個簡單的亂數來代表這些臨時產生的request
 
-var x = Math.floor(Math.random() * (max - min + 1)) + min;
-Reference
-非永久性的request
+nohup your_command &amp;&gt;myout.txt &amp;
 
-在這邊是使用網路上的參考方式去產生出一個36 bits的一串數值，透過這個數值去辨認每一個連接進來的session或session所產生出來的request !由於這種情況下，所產生出來的需求會較多，且持續時間ex: session 連接時間也會較長，所以這種guid
+這邊將原始指令的輸出重新
       </div>
 
       <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/06/07/guid-in-javascript/">
+        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/07/18/notes-for-nohup-command-on-linux/">
           <li class="facebook" title="like"></li>
           <li class="twitter" title="twitte"></li>
           <li class="plusone" title="google"></li>
         </ul>
-        <a href="http://bamoo456.github.io/2014/06/07/guid-in-javascript/#disqus_thread" class="btn-comment">Comments</a>
-      </div>
-    </div>
-
-
-
-
-    <div class="post box nocover">
-      <em class="date"><span>01</span>Jun</em>
-      <h2 class="post-title"><a href="/2014/06/01/timefunc_in_js/">timeFunc_in_Js</a></h2>
-      <div class="post-content">javasript中，system time的相關作法主要是透過built-in的date ojbect
-主要的初始化func用法如下:
-var date = new Date();
-var date = new Date(msec);
-var date = new Date(dateString);
-var date = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-在new出date ojbect以後就可以透過其相對應的func來取得系統的許多跟時間相關的func
-取得目前數字表示的timestamp
-new Date().getTime();
-
-Returns the number of milliseconds since midnight Jan 1, 1970
-
-簡單講它會回傳一連串的數字來
-      </div>
-
-      <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/06/01/timefunc_in_js/">
-          <li class="facebook" title="like"></li>
-          <li class="twitter" title="twitte"></li>
-          <li class="plusone" title="google"></li>
-        </ul>
-        <a href="http://bamoo456.github.io/2014/06/01/timefunc_in_js/#disqus_thread" class="btn-comment">Comments</a>
-      </div>
-    </div>
-
-
-
-
-    <div class="post box nocover">
-      <em class="date"><span>28</span>May</em>
-      <h2 class="post-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h2>
-      <div class="post-content">* 官方網站的api reference
-node 的強項在於透過v8 engine來實現non-blocking的程式執行方式!而這樣的特性對於檔案操作 這種需要大量資源的i/o 來講是最適合的!
-雖然nodejs 的fs module實作了sync and async 兩種api型式，
-但為了符合node的優勢，應該盡量以async的方式
-可能會常用到的幾個fs api:
-##
-確認檔案的是否存在
-fs.exists(path, callback)
-
-fs.existsSync(path)
-Test whether or not the given path exists by checking with the file system. Then call the callback argument with either true or false. 
-Example:
-1
-2
-3
-      </div>
-
-      <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/">
-          <li class="facebook" title="like"></li>
-          <li class="twitter" title="twitte"></li>
-          <li class="plusone" title="google"></li>
-        </ul>
-        <a href="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/#disqus_thread" class="btn-comment">Comments</a>
+        <a href="http://bamoo456.github.io/2014/07/18/notes-for-nohup-command-on-linux/#disqus_thread" class="btn-comment">Comments</a>
       </div>
     </div>
 

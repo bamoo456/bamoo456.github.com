@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=932" >
   <meta name="MobileOptimized" content="932" >
   <meta name="generator" content="GeorgeChen techNote">
-  <title>Tag: javascript</title>
+  <title>notes for nohup command on Linux</title>
 
   <link rel="stylesheet" type="text/css" href="/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/awe.css">
@@ -38,111 +38,53 @@
 </div>
 
     
-<div class="two-columns">
+<div class="two-columns post-page">
   <div class="content">
 
-
-
-
     <div class="post box nocover">
-      <em class="date"><span>07</span>Jun</em>
-      <h2 class="post-title"><a href="/2014/06/07/guid-in-javascript/">GUID in Javascript</a></h2>
-      <div class="post-content">Why we need GUID ?
-當要控管每個user與其相對應的session時，一個特別的global_unique_ID就會需要用到!
-簡單記錄幾種情況會使用到guid與其相對應的產生方式：
-簡單亂數
+      <em class="date"><span>18</span>Jul</em>
+      <h2 class="post-title"><a href="/2014/07/18/notes-for-nohup-command-on-linux/">notes for nohup command on Linux</a></h2>
+      <div class="post-content"><h2 id="nohup"><strong>nohup</strong></h2>
+<p>記錄一下這個<code>linux</code>的舊指令用法…</p>
+<p>當我們正常執行指令是透過<code>telnet</code>或<code>ssh</code>時，通常會遇到遠端離線時，<br>同時正在執行的程式也跟著停掉了；</p>
+<p>在某些情況下，這倒是蠻困擾人的，也許我們就只是想要遠端進去<code>server</code>讓程式執行整晚!<br>但卻因為程式無法繼續，而產生問題…</p>
+<h3 id="why_command/program_will_be_stopped_when_logout_?"><em>why command/program will be stopped when logout ?</em></h3>
+<p>主要在於：<br>當我們從一個連線登出的時候，每個<code>process</code>都會收到一個<code>SIGHUP</code>信號，透過<code>nohup</code>所下達的命令就可以不受影響，繼續執行。</p>
+<p>=&gt;<a href="http://goo.gl/f2ZHTI" target="_blank">詳細解釋出處</a></p>
+<h3 id="How_to_use_nohup"><em>How to use nohup</em></h3>
+<p>最簡單的方式是在原本要執行的執令前面加入<code>nohup</code><br><strong>ex:</strong></p>
+<pre><code>nohup your_command &amp;
 
-通常這種情況比較適合短暫且要控管的client/user/request很少，所以這邊就直接簡單產生一個簡單的亂數來代表這些臨時產生的request
 
-var x = Math.floor(Math.random() * (max - min + 1)) + min;
-Reference
-非永久性的request
-
-在這邊是使用網路上的參考方式去產生出一個36 bits的一串數值，透過這個數值去辨認每一個連接進來的session或session所產生出來的request !由於這種情況下，所產生出來的需求會較多，且持續時間ex: session 連接時間也會較長，所以這種guid
-      </div>
+nohup your_command &amp;&gt;myout<span class="preprocessor">.txt</span> &amp;
+</code></pre><blockquote>
+<p>這邊將原始指令的輸出重新導到myout.txt</p>
+</blockquote>
+<h3 id="Some_tips"><em>Some tips</em></h3>
+<p>這個指令比較需要注意的是，如果我們原本要使用的指令會一直產生資訊在<code>terminal</code>上，<br>則使用了<code>nohup</code>後，它會將這些原始的輸出導到一個檔案上:<code>nohup.out</code></p>
+<p>這就會產生一個問題，如果長期使用<code>nohup</code>時，這個檔案就會一直增長下去<br>所以使用時，還需要注意這個問題 !</p>
+<p>如果不重視原始指令的輸出內容時，可以 =&gt; <a href="http://goo.gl/gTV1Ez" target="_blank">參考這邊的作法</a></p>
+<p>其它關於<code>nohup</code>的介紹 =&gt; <a href="http://goo.gl/cSivhV" target="_blank">reference</a><br>相關於<code>nohup</code>的指令還有:<code>screen</code> 與 <code>tmux</code></p>
+</div>
 
       <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/06/07/guid-in-javascript/">
+        <ul class="social-likes" data-url="/2014/07/18/notes-for-nohup-command-on-linux/">
           <li class="facebook" title="like"></li>
           <li class="twitter" title="twitte"></li>
           <li class="plusone" title="google"></li>
         </ul>
-        <a href="http://bamoo456.github.io/2014/06/07/guid-in-javascript/#disqus_thread" class="btn-comment">Comments</a>
       </div>
     </div>
-
-
-
-
-    <div class="post box nocover">
-      <em class="date"><span>01</span>Jun</em>
-      <h2 class="post-title"><a href="/2014/06/01/timefunc_in_js/">timeFunc_in_Js</a></h2>
-      <div class="post-content">javasript中，system time的相關作法主要是透過built-in的date ojbect
-主要的初始化func用法如下:
-var date = new Date();
-var date = new Date(msec);
-var date = new Date(dateString);
-var date = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-在new出date ojbect以後就可以透過其相對應的func來取得系統的許多跟時間相關的func
-取得目前數字表示的timestamp
-new Date().getTime();
-
-Returns the number of milliseconds since midnight Jan 1, 1970
-
-簡單講它會回傳一連串的數字來
-      </div>
-
-      <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/06/01/timefunc_in_js/">
-          <li class="facebook" title="like"></li>
-          <li class="twitter" title="twitte"></li>
-          <li class="plusone" title="google"></li>
-        </ul>
-        <a href="http://bamoo456.github.io/2014/06/01/timefunc_in_js/#disqus_thread" class="btn-comment">Comments</a>
-      </div>
-    </div>
-
-
-
-
-    <div class="post box nocover">
-      <em class="date"><span>28</span>May</em>
-      <h2 class="post-title"><a href="/2014/05/28/nodjs_filesystem/">Nodjs_filesystem_notes</a></h2>
-      <div class="post-content">* 官方網站的api reference
-node 的強項在於透過v8 engine來實現non-blocking的程式執行方式!而這樣的特性對於檔案操作 這種需要大量資源的i/o 來講是最適合的!
-雖然nodejs 的fs module實作了sync and async 兩種api型式，
-但為了符合node的優勢，應該盡量以async的方式
-可能會常用到的幾個fs api:
-##
-確認檔案的是否存在
-fs.exists(path, callback)
-
-fs.existsSync(path)
-Test whether or not the given path exists by checking with the file system. Then call the callback argument with either true or false. 
-Example:
-1
-2
-3
-      </div>
-
-      <div class="bottom-panel">
-        <ul class="social-likes" data-url="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/">
-          <li class="facebook" title="like"></li>
-          <li class="twitter" title="twitte"></li>
-          <li class="plusone" title="google"></li>
-        </ul>
-        <a href="http://bamoo456.github.io/2014/05/28/nodjs_filesystem/#disqus_thread" class="btn-comment">Comments</a>
-      </div>
-    </div>
-
     
-
-<ul class="paging box">
-  
-  <span class="page-number">Page 1 of 1</span>
-  
-</ul>
-
+    <div class="widget post-comment">
+      <h2 class="title">Comments</h2>
+      <section id="comments">
+        <div id="disqus_thread">
+          <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </session>
+    </div>
+    
   </div>
 
   <div class="widgetarea">
@@ -153,33 +95,13 @@ Example:
   <h3 class="title">Tags</h3>
   <div style="text-align:center">
     
-    <a class="button" href="/tags/programming/">programming</a>
-    
-    <a class="button" href="/tags/javascript/">javascript</a>
-    
-    <a class="button" href="/tags/deployment/">deployment</a>
-    
-    <a class="button" href="/tags/startup/">startup</a>
-    
-    <a class="button" href="/tags/nodjs/">nodjs</a>
-    
-    <a class="button" href="/tags/refactoring/">refactoring</a>
-    
-    <a class="button" href="/tags/mac/">mac</a>
+    <a class="button" href="/tags/linux/">linux</a>
     
     <a class="button" href="/tags/shell/">shell</a>
     
-    <a class="button" href="/tags/google cloud/">google cloud</a>
+    <a class="button" href="/tags/mac/">mac</a>
     
-    <a class="button" href="/tags/linux/">linux</a>
-    
-    <a class="button" href="/tags/tech/">tech</a>
-    
-    <a class="button" href="/tags/hexo/">hexo</a>
-    
-    <a class="button" href="/tags/session/">session</a>
-    
-    <a class="button" href="/tags/time/">time</a>
+    <a class="button" href="/tags/deployment/">deployment</a>
     
   </div>
   
@@ -267,11 +189,13 @@ Example:
 <script>
   var disqus_shortname = 'georgechentechnote';
   
+  var disqus_url = 'http://bamoo456.github.io/2014/07/18/notes-for-nohup-command-on-linux/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
+    dsq.src = '//go.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
